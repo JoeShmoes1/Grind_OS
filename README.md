@@ -1,22 +1,21 @@
-# Welcome to your Lovable project
+# GRIND OS - Personal Productivity System
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/50c407b3-4c75-4c01-946b-6d5f3c6a180f
+**Live URL**: https://JoeShmoes1.github.io/Grind_OS/
+**GitHub Repository**: https://github.com/JoeShmoes1/Grind_OS
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
 
-**Use Lovable**
+**Use GitHub Web Interface**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/50c407b3-4c75-4c01-946b-6d5f3c6a180f) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
+You can edit files directly on GitHub by navigating to the file and clicking the pencil icon.
 
 **Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+If you want to work locally using your own IDE, you can clone this repo and push changes.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -104,14 +103,13 @@ If you want to use a custom domain:
    - For apex domain (example.com): Create A records pointing to GitHub's IPs
    - For subdomain (www.example.com): Create CNAME record pointing to `JoeShmoes1.github.io`
 
-### Alternative: Lovable Deployment
-
-Simply open [Lovable](https://lovable.dev/projects/50c407b3-4c75-4c01-946b-6d5f3c6a180f) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
+## Can I connect a custom domain to GitHub Pages?
 
 Yes, you can!
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. **Add CNAME file**: Create a `CNAME` file in the `public` directory with your domain name
+2. **Update base path**: In `vite.config.ts`, change the base path from `/Grind_OS/` to `/`
+3. **Configure DNS**: Point your domain to GitHub Pages
+4. **Enable custom domain**: In repository Settings > Pages, add your custom domain
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Read more here: [GitHub Pages custom domain documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)
