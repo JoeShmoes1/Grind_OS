@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRIND OS - Blog</title>
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #9b87f5;
+            --primary-hover: #8a76e4;
+            --dark-purple: #7E69AB;
+            --deep-purple: #1A1F2C;
+            --light-purple: #D6BCFA;
+            --background: #f8f9fc;
+            --foreground: #1a1f2c;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #f1f5f9;
+            --muted-foreground: #64748b;
+            --radius: 0.75rem;
+        }
+
+        .dark {
+            --background: #1a1f2c;
+            --foreground: #f8f9fc;
+            --card: #242a38;
+            --border: #2d3748;
+            --muted: #2d3748;
+            --muted-foreground: #a0aec0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--foreground);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--muted);
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            background-color: var(--background);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 0.75rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--foreground);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .page-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), #1EAEDB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-description {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .page-content {
+            padding: 2rem 0 6rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 2rem;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .blog-category {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .blog-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .blog-link {
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .blog-link:hover {
+            text-decoration: underline;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            background-color: var(--muted);
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        footer {
+            background-color: var(--deep-purple);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link-list {
+            list-style: none;
+        }
+
+        .footer-link-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link-list a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link-list a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .header-actions {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="/logo.png" alt="GRIND OS Logo">
+                    <span>GRIND OS</span>
+                </div>
+                <nav class="nav-links">
+                    <a href="/landing#features" class="nav-link">Features</a>
+                    <a href="/landing#pricing" class="nav-link">Pricing</a>
+                    <a href="/landing#how-to-use" class="nav-link">How to Use</a>
+                    <a href="/landing#faq" class="nav-link">FAQ</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="/auth" class="btn btn-outline">Login</a>
+                    <a href="/auth?signup=true" class="btn btn-primary">Sign Up Free</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">GRIND OS Blog</h1>
+            <p class="page-description">Insights, tips, and strategies to help you boost your productivity and achieve your goals.</p>
+            
+            <div class="categories">
+                <button class="category-btn active">All</button>
+                <button class="category-btn">Productivity</button>
+                <button class="category-btn">Time Management</button>
+                <button class="category-btn">Goal Setting</button>
+                <button class="category-btn">Focus</button>
+                <button class="category-btn">Mindfulness</button>
+                <button class="category-btn">App Updates</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="blog-grid">
+                <div class="blog-card card animate-slide-up">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Blog post image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">June 15, 2023</span>
+                            <span class="blog-category">Productivity</span>
+                        </div>
+                        <h3 class="blog-title">The Power of Deep Work: How to Achieve More in Less Time</h3>
+                        <p class="blog-excerpt">Learn how to cultivate the ability to focus without distraction on cognitively demanding tasks, and produce better results in less time.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card card animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Blog post image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">May 28, 2023</span>
+                            <span class="blog-category">Time Management</span>
+                        </div>
+                        <h3 class="blog-title">Time Blocking: The Secret to Effective Time Management</h3>
+                        <p class="blog-excerpt">Discover how time blocking can help you take control of your schedule, reduce context switching, and make meaningful progress on your most important work.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card card animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Blog post image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">May 12, 2023</span>
+                            <span class="blog-category">Goal Setting</span>
+                        </div>
+                        <h3 class="blog-title">SMART Goals vs. OKRs: Which Framework Is Right for You?</h3>
+                        <p class="blog-excerpt">Compare two popular goal-setting frameworks and learn how to choose the right one for your personal and professional objectives.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card card animate-slide-up" style="animation-delay: 0.6s;">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Blog post image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">April 30, 2023</span>
+                            <span class="blog-category">App Updates</span>
+                        </div>
+                        <h3 class="blog-title">Introducing the Vision Room: Visualize and Achieve Your Goals</h3>
+                        <p class="blog-excerpt">Learn about our newest feature that helps you create visual representations of your goals and track your progress toward achieving them.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card card animate-slide-up" style="animation-delay: 0.8s;">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Blog post image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">April 15, 2023</span>
+                            <span class="blog-category">Mindfulness</span>
+                        </div>
+                        <h3 class="blog-title">The Productivity-Mindfulness Connection: Why Breaks Matter</h3>
+                        <p class="blog-excerpt">Discover how incorporating mindfulness practices and strategic breaks into your workday can actually increase your productivity and creativity.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card card animate-slide-up" style="animation-delay: 1s;">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Blog post image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 28, 2023</span>
+                            <span class="blog-category">Focus</span>
+                        </div>
+                        <h3 class="blog-title">Digital Minimalism: Reclaiming Your Focus in a Noisy World</h3>
+                        <p class="blog-excerpt">Learn practical strategies for reducing digital distractions and creating an environment that supports deep focus and meaningful work.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">GRIND OS</div>
+                    <div class="footer-description">Your personal operating system for peak performance.</div>
+                </div>
+                <div class="footer-links">
+                    <h3>Product</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/landing#features">Features</a></li>
+                        <li><a href="/landing#pricing">Pricing</a></li>
+                        <li><a href="/landing#how-to-use">How to Use</a></li>
+                        <li><a href="/landing#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/careers">Careers</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 GRIND OS. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-slide-up');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Initialize elements with opacity 0 and translateY
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.animate-slide-up');
+            
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+            
+            // Trigger initial animation
+            setTimeout(animateOnScroll, 100);
+        });
+    </script>
+</body>
+</html>

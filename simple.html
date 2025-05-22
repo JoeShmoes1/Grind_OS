@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRIND OS - Simple Version</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fc;
+            color: #1a1f2c;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 1rem;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            background-color: #9b87f5;
+            border-radius: 8px;
+        }
+        
+        h1 {
+            color: #9b87f5;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .button {
+            display: inline-block;
+            background-color: #9b87f5;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .button:hover {
+            background-color: #8a76e4;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .card-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #9b87f5;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-label {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo"></div>
+        <h1>GRIND OS</h1>
+        <p>Welcome to your personal productivity system</p>
+        
+        <button class="button" id="loginButton">Enter GRIND OS</button>
+        
+        <div id="dashboard" style="display: none;">
+            <h2>Dashboard</h2>
+            <div class="dashboard">
+                <div class="card">
+                    <div class="card-value">4</div>
+                    <div class="card-label">Tasks Completed</div>
+                </div>
+                <div class="card">
+                    <div class="card-value">7</div>
+                    <div class="card-label">Day Streak</div>
+                </div>
+                <div class="card">
+                    <div class="card-value">85%</div>
+                    <div class="card-label">Productivity</div>
+                </div>
+            </div>
+            
+            <h2 style="margin-top: 2rem;">Today's Focus</h2>
+            <div id="tasks">
+                <div class="card" style="text-align: left; margin-bottom: 1rem;">
+                    <input type="checkbox" id="task1"> 
+                    <label for="task1">Complete project proposal</label>
+                </div>
+                <div class="card" style="text-align: left; margin-bottom: 1rem;">
+                    <input type="checkbox" id="task2"> 
+                    <label for="task2">Review quarterly goals</label>
+                </div>
+                <div class="card" style="text-align: left; margin-bottom: 1rem;">
+                    <input type="checkbox" id="task3" checked> 
+                    <label for="task3">Morning meditation</label>
+                </div>
+            </div>
+            
+            <button class="button" style="margin-top: 2rem;">Upgrade to Premium</button>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('loginButton').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRIND OS - Careers</title>
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #9b87f5;
+            --primary-hover: #8a76e4;
+            --dark-purple: #7E69AB;
+            --deep-purple: #1A1F2C;
+            --light-purple: #D6BCFA;
+            --background: #f8f9fc;
+            --foreground: #1a1f2c;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #f1f5f9;
+            --muted-foreground: #64748b;
+            --radius: 0.75rem;
+        }
+
+        .dark {
+            --background: #1a1f2c;
+            --foreground: #f8f9fc;
+            --card: #242a38;
+            --border: #2d3748;
+            --muted: #2d3748;
+            --muted-foreground: #a0aec0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--foreground);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--muted);
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        header {
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            background-color: var(--background);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 0.75rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--foreground);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .page-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), #1EAEDB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-description {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .page-content {
+            padding: 2rem 0 6rem;
+        }
+
+        .careers-section {
+            margin-bottom: 4rem;
+        }
+
+        .careers-section h2 {
+            font-size: 1.875rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .careers-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .job-list {
+            margin-top: 2rem;
+        }
+
+        .job-card {
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .job-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .job-location {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            padding: 0.25rem 0.75rem;
+            background-color: var(--muted);
+            border-radius: 1rem;
+        }
+
+        .job-description {
+            color: var(--muted-foreground);
+        }
+
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .job-type {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        footer {
+            background-color: var(--deep-purple);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link-list {
+            list-style: none;
+        }
+
+        .footer-link-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link-list a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link-list a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .header-actions {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .job-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="/logo.png" alt="GRIND OS Logo">
+                    <span>GRIND OS</span>
+                </div>
+                <nav class="nav-links">
+                    <a href="/landing#features" class="nav-link">Features</a>
+                    <a href="/landing#pricing" class="nav-link">Pricing</a>
+                    <a href="/landing#how-to-use" class="nav-link">How to Use</a>
+                    <a href="/landing#faq" class="nav-link">FAQ</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="/auth" class="btn btn-outline">Login</a>
+                    <a href="/auth?signup=true" class="btn btn-primary">Sign Up Free</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">Join Our Team</h1>
+            <p class="page-description">Help us build the future of personal productivity and make a meaningful impact on people's lives.</p>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="careers-section animate-slide-up">
+                <h2>Why Work at GRIND OS?</h2>
+                <p>At GRIND OS, we're on a mission to help people achieve their full potential by providing the tools, systems, and insights needed to organize their lives, maintain focus, and accomplish their goals.</p>
+                <p>We're a remote-first company with team members across the globe, united by our passion for productivity and personal growth. We believe in work-life harmony, continuous learning, and creating an environment where everyone can do their best work.</p>
+            </div>
+
+            <div class="careers-section animate-slide-up">
+                <h2>Our Benefits</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card card">
+                        <div class="benefit-icon">🌎</div>
+                        <h3>Remote-First</h3>
+                        <p>Work from anywhere in the world. We believe in hiring the best talent, regardless of location.</p>
+                    </div>
+                    <div class="benefit-card card">
+                        <div class="benefit-icon">⏰</div>
+                        <h3>Flexible Hours</h3>
+                        <p>We focus on results, not hours. Work when you're most productive.</p>
+                    </div>
+                    <div class="benefit-card card">
+                        <div class="benefit-icon">💰</div>
+                        <h3>Competitive Compensation</h3>
+                        <p>We offer competitive salaries and equity options for all team members.</p>
+                    </div>
+                    <div class="benefit-card card">
+                        <div class="benefit-icon">🏥</div>
+                        <h3>Health & Wellness</h3>
+                        <p>Comprehensive health insurance and wellness stipend to keep you at your best.</p>
+                    </div>
+                    <div class="benefit-card card">
+                        <div class="benefit-icon">📚</div>
+                        <h3>Learning Budget</h3>
+                        <p>Annual budget for courses, books, and conferences to support your growth.</p>
+                    </div>
+                    <div class="benefit-card card">
+                        <div class="benefit-icon">🏝️</div>
+                        <h3>Generous Time Off</h3>
+                        <p>Unlimited PTO policy, plus company-wide recharge days throughout the year.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="careers-section animate-slide-up">
+                <h2>Open Positions</h2>
+                <p>We're always looking for talented individuals to join our team. Check out our current openings below:</p>
+                
+                <div class="job-list">
+                    <div class="job-card card">
+                        <div class="job-header">
+                            <h3 class="job-title">Senior Frontend Developer</h3>
+                            <span class="job-location">Remote</span>
+                        </div>
+                        <p class="job-description">We're looking for an experienced frontend developer with expertise in React, TypeScript, and modern web technologies to help build and improve our user interface.</p>
+                        <div class="job-footer">
+                            <span class="job-type">Full-time</span>
+                            <a href="#" class="btn btn-primary">Apply Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="job-card card">
+                        <div class="job-header">
+                            <h3 class="job-title">UX/UI Designer</h3>
+                            <span class="job-location">Remote</span>
+                        </div>
+                        <p class="job-description">Join our design team to create intuitive, beautiful, and functional user experiences that help our users achieve peak productivity.</p>
+                        <div class="job-footer">
+                            <span class="job-type">Full-time</span>
+                            <a href="#" class="btn btn-primary">Apply Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="job-card card">
+                        <div class="job-header">
+                            <h3 class="job-title">Growth Marketing Manager</h3>
+                            <span class="job-location">Remote</span>
+                        </div>
+                        <p class="job-description">Help us reach more users and grow our community through creative marketing strategies, content creation, and data-driven campaigns.</p>
+                        <div class="job-footer">
+                            <span class="job-type">Full-time</span>
+                            <a href="#" class="btn btn-primary">Apply Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="job-card card">
+                        <div class="job-header">
+                            <h3 class="job-title">Backend Developer</h3>
+                            <span class="job-location">Remote</span>
+                        </div>
+                        <p class="job-description">Build and maintain the server-side of our application, working with Node.js, databases, and cloud infrastructure to ensure performance and reliability.</p>
+                        <div class="job-footer">
+                            <span class="job-type">Full-time</span>
+                            <a href="#" class="btn btn-primary">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center" style="margin-top: 2rem;">
+                    <p>Don't see a position that matches your skills? We're always interested in talking to talented people.</p>
+                    <a href="/contact" class="btn btn-outline" style="margin-top: 1rem;">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">GRIND OS</div>
+                    <div class="footer-description">Your personal operating system for peak performance.</div>
+                </div>
+                <div class="footer-links">
+                    <h3>Product</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/landing#features">Features</a></li>
+                        <li><a href="/landing#pricing">Pricing</a></li>
+                        <li><a href="/landing#how-to-use">How to Use</a></li>
+                        <li><a href="/landing#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/careers">Careers</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 GRIND OS. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-slide-up');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Initialize elements with opacity 0 and translateY
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.animate-slide-up');
+            
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+            
+            // Trigger initial animation
+            setTimeout(animateOnScroll, 100);
+        });
+    </script>
+</body>
+</html>

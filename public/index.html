@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRIND OS - Welcome</title>
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #9b87f5;
+            --primary-hover: #8a76e4;
+            --dark-purple: #7E69AB;
+            --deep-purple: #1A1F2C;
+            --light-purple: #D6BCFA;
+            --background: #f8f9fc;
+            --foreground: #1a1f2c;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #f1f5f9;
+            --muted-foreground: #64748b;
+            --radius: 0.75rem;
+        }
+
+        .dark {
+            --background: #1a1f2c;
+            --foreground: #f8f9fc;
+            --card: #242a38;
+            --border: #2d3748;
+            --muted: #2d3748;
+            --muted-foreground: #a0aec0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--foreground);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--muted);
+        }
+
+        .btn-lg {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+        }
+
+        header {
+            padding: 1.5rem 0;
+            background-color: var(--background);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 0.75rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .welcome-section {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .welcome-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), #1EAEDB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .welcome-description {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            margin-bottom: 2.5rem;
+        }
+
+        .welcome-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+
+        .navigation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .navigation-section {
+            margin-bottom: 2rem;
+        }
+
+        .navigation-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .navigation-card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navigation-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-4px);
+        }
+
+        .navigation-card-header {
+            padding: 1.5rem;
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .navigation-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .navigation-card-description {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .navigation-card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navigation-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navigation-link {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .navigation-link:last-child {
+            border-bottom: none;
+        }
+
+        .navigation-link a {
+            color: var(--foreground);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navigation-link a:hover {
+            color: var(--primary);
+        }
+
+        .navigation-link-icon {
+            color: var(--primary);
+        }
+
+        .navigation-card-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer {
+            background-color: var(--deep-purple);
+            color: white;
+            padding: 4rem 0;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 30px;
+            margin-right: 0.75rem;
+        }
+
+        .footer-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link-list {
+            list-style: none;
+        }
+
+        .footer-link-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link-list a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link-list a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .spinning-gear {
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .welcome-title {
+                font-size: 2.5rem;
+            }
+
+            .welcome-description {
+                font-size: 1.125rem;
+            }
+
+            .welcome-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .navigation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="/logo.png" alt="GRIND OS Logo">
+                    <span>GRIND OS</span>
+                </div>
+                <div class="header-actions">
+                    <a href="/auth" class="btn btn-outline">Login</a>
+                    <a href="/auth?signup=true" class="btn btn-primary">Sign Up Free</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="welcome-section">
+                <div class="logo-container animate-fade-in">
+                    <div class="spinning-gear">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#9b87f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="welcome-title">Welcome to GRIND OS</h1>
+                <p class="welcome-description">Your personal operating system for peak productivity and performance. Organize your life, manage tasks, set goals, and achieve more.</p>
+                <div class="welcome-actions">
+                    <a href="/auth?signup=true" class="btn btn-primary btn-lg animate-pulse">Get Started for Free</a>
+                    <a href="/landing" class="btn btn-outline btn-lg">Learn More</a>
+                </div>
+            </div>
+
+            <div class="navigation-grid">
+                <div class="navigation-card animate-slide-up">
+                    <div class="navigation-card-header">
+                        <h3 class="navigation-card-title">Company</h3>
+                        <p class="navigation-card-description">Learn more about GRIND OS</p>
+                    </div>
+                    <div class="navigation-card-content">
+                        <ul class="navigation-links">
+                            <li class="navigation-link">
+                                <a href="/about">
+                                    About Us
+                                    <span class="navigation-link-icon">→</span>
+                                </a>
+                            </li>
+                            <li class="navigation-link">
+                                <a href="/careers">
+                                    Careers
+                                    <span class="navigation-link-icon">→</span>
+                                </a>
+                            </li>
+                            <li class="navigation-link">
+                                <a href="/blog">
+                                    Blog
+                                    <span class="navigation-link-icon">→</span>
+                                </a>
+                            </li>
+                            <li class="navigation-link">
+                                <a href="/contact">
+                                    Contact
+                                    <span class="navigation-link-icon">→</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="navigation-card animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="navigation-card-header">
+                        <h3 class="navigation-card-title">Legal</h3>
+                        <p class="navigation-card-description">Important policies and agreements</p>
+                    </div>
+                    <div class="navigation-card-content">
+                        <ul class="navigation-links">
+                            <li class="navigation-link">
+                                <a href="/terms">
+                                    Terms of Service
+                                    <span class="navigation-link-icon">→</span>
+                                </a>
+                            </li>
+                            <li class="navigation-link">
+                                <a href="/privacy">
+                                    Privacy Policy
+                                    <span class="navigation-link-icon">→</span>
+                                </a>
+                            </li>
+                            <li class="navigation-link">
+                                <a href="/cookies">
+                                    Cookie Policy
+                                    <span class="navigation-link-icon">→</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="navigation-card animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="navigation-card-header">
+                        <h3 class="navigation-card-title">App</h3>
+                        <p class="navigation-card-description">Access your productivity system</p>
+                    </div>
+                    <div class="navigation-card-content">
+                        <ul class="navigation-links">
+                            <li class="navigation-link">
+                                <a href="/auth?signup=true">
+                                    Sign Up
+                                    <span class="navigation-link-icon">→</span>
+                                </a>
+                            </li>
+                            <li class="navigation-link">
+                                <a href="/auth">
+                                    Login
+                                    <span class="navigation-link-icon">→</span>
+                                </a>
+                            </li>
+                            <li class="navigation-link">
+                                <a href="/landing#features">
+                                    Features
+                                    <span class="navigation-link-icon">→</span>
+                                </a>
+                            </li>
+                            <li class="navigation-link">
+                                <a href="/landing#pricing">
+                                    Pricing
+                                    <span class="navigation-link-icon">→</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <img src="/logo.png" alt="GRIND OS Logo">
+                        <span>GRIND OS</span>
+                    </div>
+                    <div class="footer-description">Your personal operating system for peak performance.</div>
+                </div>
+                <div class="footer-links">
+                    <h3>Product</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/landing#features">Features</a></li>
+                        <li><a href="/landing#pricing">Pricing</a></li>
+                        <li><a href="/landing#how-to-use">How to Use</a></li>
+                        <li><a href="/landing#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/careers">Careers</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 GRIND OS. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-slide-up');
+
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Initialize elements with opacity 0 and translateY
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.animate-slide-up');
+
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+
+            // Trigger initial animation
+            setTimeout(animateOnScroll, 100);
+        });
+    </script>
+</body>
+</html>

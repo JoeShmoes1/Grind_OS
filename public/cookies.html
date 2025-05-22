@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRIND OS - Cookie Policy</title>
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #9b87f5;
+            --primary-hover: #8a76e4;
+            --dark-purple: #7E69AB;
+            --deep-purple: #1A1F2C;
+            --light-purple: #D6BCFA;
+            --background: #f8f9fc;
+            --foreground: #1a1f2c;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #f1f5f9;
+            --muted-foreground: #64748b;
+            --radius: 0.75rem;
+        }
+
+        .dark {
+            --background: #1a1f2c;
+            --foreground: #f8f9fc;
+            --card: #242a38;
+            --border: #2d3748;
+            --muted: #2d3748;
+            --muted-foreground: #a0aec0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--foreground);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--muted);
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        header {
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            background-color: var(--background);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 0.75rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--foreground);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .page-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), #1EAEDB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-description {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .page-content {
+            padding: 2rem 0 6rem;
+        }
+
+        .legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .legal-section {
+            margin-bottom: 2rem;
+        }
+
+        .legal-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .legal-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .legal-section p {
+            margin-bottom: 1rem;
+        }
+
+        .legal-section ul, .legal-section ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .legal-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-meta {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .cookie-table th, .cookie-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cookie-table th {
+            background-color: var(--muted);
+            font-weight: 600;
+        }
+
+        footer {
+            background-color: var(--deep-purple);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link-list {
+            list-style: none;
+        }
+
+        .footer-link-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link-list a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link-list a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .header-actions {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .cookie-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="/logo.png" alt="GRIND OS Logo">
+                    <span>GRIND OS</span>
+                </div>
+                <nav class="nav-links">
+                    <a href="/landing#features" class="nav-link">Features</a>
+                    <a href="/landing#pricing" class="nav-link">Pricing</a>
+                    <a href="/landing#how-to-use" class="nav-link">How to Use</a>
+                    <a href="/landing#faq" class="nav-link">FAQ</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="/auth" class="btn btn-outline">Login</a>
+                    <a href="/auth?signup=true" class="btn btn-primary">Sign Up Free</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">Cookie Policy</h1>
+            <p class="page-description">Learn about how we use cookies and similar technologies on our website and application.</p>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="legal-content card animate-fade-in">
+                <div class="legal-section">
+                    <h2>1. Introduction</h2>
+                    <p>This Cookie Policy explains how GRIND OS ("we," "our," or "us") uses cookies and similar technologies to recognize you when you visit our website and application (collectively, the "Service"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>2. What Are Cookies?</h2>
+                    <p>Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners to make their websites work, or to work more efficiently, as well as to provide reporting information.</p>
+                    <p>Cookies set by the website owner (in this case, GRIND OS) are called "first-party cookies." Cookies set by parties other than the website owner are called "third-party cookies." Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics).</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>3. Why Do We Use Cookies?</h2>
+                    <p>We use first-party and third-party cookies for several reasons. Some cookies are required for technical reasons in order for our Service to operate, and we refer to these as "essential" or "strictly necessary" cookies. Other cookies enable us to track and target the interests of our users to enhance the experience on our Service. Third parties serve cookies through our Service for advertising, analytics, and other purposes.</p>
+                    <p>The specific types of first and third-party cookies served through our Service and the purposes they perform are described below:</p>
+                    
+                    <h3>Essential Cookies</h3>
+                    <p>These cookies are strictly necessary to provide you with services available through our Service and to use some of its features, such as access to secure areas. Because these cookies are strictly necessary to deliver the Service, you cannot refuse them without impacting how our Service functions.</p>
+                    
+                    <h3>Performance and Functionality Cookies</h3>
+                    <p>These cookies are used to enhance the performance and functionality of our Service but are non-essential to their use. However, without these cookies, certain functionality may become unavailable.</p>
+                    
+                    <h3>Analytics and Customization Cookies</h3>
+                    <p>These cookies collect information that is used either in aggregate form to help us understand how our Service is being used or how effective our marketing campaigns are, or to help us customize our Service for you.</p>
+                    
+                    <h3>Advertising Cookies</h3>
+                    <p>These cookies are used to make advertising messages more relevant to you. They perform functions like preventing the same ad from continuously reappearing, ensuring that ads are properly displayed, and in some cases selecting advertisements that are based on your interests.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>4. What Cookies Do We Use?</h2>
+                    <p>The following table provides more information about the cookies we use and why:</p>
+                    
+                    <table class="cookie-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Purpose</th>
+                                <th>Duration</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>_session</td>
+                                <td>Used to maintain your authenticated session</td>
+                                <td>Session</td>
+                                <td>Essential</td>
+                            </tr>
+                            <tr>
+                                <td>_csrf</td>
+                                <td>Used to prevent cross-site request forgery attacks</td>
+                                <td>Session</td>
+                                <td>Essential</td>
+                            </tr>
+                            <tr>
+                                <td>_preferences</td>
+                                <td>Stores your preferences and settings</td>
+                                <td>1 year</td>
+                                <td>Functionality</td>
+                            </tr>
+                            <tr>
+                                <td>_ga</td>
+                                <td>Used by Google Analytics to distinguish users</td>
+                                <td>2 years</td>
+                                <td>Analytics</td>
+                            </tr>
+                            <tr>
+                                <td>_gid</td>
+                                <td>Used by Google Analytics to distinguish users</td>
+                                <td>24 hours</td>
+                                <td>Analytics</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="legal-section">
+                    <h2>5. How Can You Control Cookies?</h2>
+                    <p>You have the right to decide whether to accept or reject cookies. You can exercise your cookie preferences by clicking on the appropriate opt-out links provided in the cookie table above.</p>
+                    <p>You can also set or amend your web browser controls to accept or refuse cookies. If you choose to reject cookies, you may still use our Service though your access to some functionality and areas may be restricted. As the means by which you can refuse cookies through your web browser controls vary from browser to browser, you should visit your browser's help menu for more information.</p>
+                    <p>In addition, most advertising networks offer you a way to opt out of targeted advertising. If you would like to find out more information, please visit <a href="http://www.aboutads.info/choices/" style="color: var(--primary);">http://www.aboutads.info/choices/</a> or <a href="http://www.youronlinechoices.com" style="color: var(--primary);">http://www.youronlinechoices.com</a>.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>6. How Often Will We Update This Cookie Policy?</h2>
+                    <p>We may update this Cookie Policy from time to time in order to reflect, for example, changes to the cookies we use or for other operational, legal, or regulatory reasons. Please therefore revisit this Cookie Policy regularly to stay informed about our use of cookies and related technologies.</p>
+                    <p>The date at the bottom of this Cookie Policy indicates when it was last updated.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>7. Where Can You Get Further Information?</h2>
+                    <p>If you have any questions about our use of cookies or other technologies, please email us at <a href="mailto:privacy@grindos.com" style="color: var(--primary);">privacy@grindos.com</a>.</p>
+                </div>
+
+                <div class="legal-meta">
+                    <p>Last updated: June 1, 2023</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">GRIND OS</div>
+                    <div class="footer-description">Your personal operating system for peak performance.</div>
+                </div>
+                <div class="footer-links">
+                    <h3>Product</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/landing#features">Features</a></li>
+                        <li><a href="/landing#pricing">Pricing</a></li>
+                        <li><a href="/landing#how-to-use">How to Use</a></li>
+                        <li><a href="/landing#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/careers">Careers</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 GRIND OS. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-slide-up');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Initialize elements with opacity 0 and translateY
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.animate-slide-up');
+            
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+            
+            // Trigger initial animation
+            setTimeout(animateOnScroll, 100);
+        });
+    </script>
+</body>
+</html>

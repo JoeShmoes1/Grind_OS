@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRIND OS - Terms of Service</title>
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #9b87f5;
+            --primary-hover: #8a76e4;
+            --dark-purple: #7E69AB;
+            --deep-purple: #1A1F2C;
+            --light-purple: #D6BCFA;
+            --background: #f8f9fc;
+            --foreground: #1a1f2c;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #f1f5f9;
+            --muted-foreground: #64748b;
+            --radius: 0.75rem;
+        }
+
+        .dark {
+            --background: #1a1f2c;
+            --foreground: #f8f9fc;
+            --card: #242a38;
+            --border: #2d3748;
+            --muted: #2d3748;
+            --muted-foreground: #a0aec0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--foreground);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--muted);
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        header {
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            background-color: var(--background);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 0.75rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--foreground);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .page-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), #1EAEDB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-description {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .page-content {
+            padding: 2rem 0 6rem;
+        }
+
+        .legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .legal-section {
+            margin-bottom: 2rem;
+        }
+
+        .legal-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .legal-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .legal-section p {
+            margin-bottom: 1rem;
+        }
+
+        .legal-section ul, .legal-section ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .legal-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-meta {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        .legal-nav {
+            position: sticky;
+            top: 6rem;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background-color: var(--card);
+        }
+
+        .legal-nav h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .legal-nav-list {
+            list-style: none;
+        }
+
+        .legal-nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-nav-link {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+
+        .legal-nav-link:hover {
+            color: var(--primary);
+        }
+
+        footer {
+            background-color: var(--deep-purple);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link-list {
+            list-style: none;
+        }
+
+        .footer-link-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link-list a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link-list a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .header-actions {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="/logo.png" alt="GRIND OS Logo">
+                    <span>GRIND OS</span>
+                </div>
+                <nav class="nav-links">
+                    <a href="/landing#features" class="nav-link">Features</a>
+                    <a href="/landing#pricing" class="nav-link">Pricing</a>
+                    <a href="/landing#how-to-use" class="nav-link">How to Use</a>
+                    <a href="/landing#faq" class="nav-link">FAQ</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="/auth" class="btn btn-outline">Login</a>
+                    <a href="/auth?signup=true" class="btn btn-primary">Sign Up Free</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">Terms of Service</h1>
+            <p class="page-description">Please read these terms carefully before using GRIND OS.</p>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="legal-content card animate-fade-in">
+                <div class="legal-section">
+                    <h2>1. Introduction</h2>
+                    <p>Welcome to GRIND OS ("we," "our," or "us"). These Terms of Service ("Terms") govern your access to and use of the GRIND OS application, website, and services (collectively, the "Service").</p>
+                    <p>By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the Terms, you may not access the Service.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>2. Accounts</h2>
+                    <p>When you create an account with us, you must provide accurate, complete, and current information. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account.</p>
+                    <p>You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password. We encourage you to use a strong password (a combination of upper and lower case letters, numbers, and symbols) for your account.</p>
+                    <p>You agree not to disclose your password to any third party. You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>3. Subscription and Payments</h2>
+                    <p>Some features of the Service require a subscription. By subscribing to a paid plan, you agree to pay the subscription fees indicated for your selected plan.</p>
+                    <p>Subscription fees are billed in advance on a monthly or annual basis, depending on the payment plan you select. Unless you cancel your subscription before the end of the current billing period, we will automatically renew your subscription and charge the subscription fee to your payment method.</p>
+                    <p>You can cancel your subscription at any time through your account settings. If you cancel, you can continue to use the paid features until the end of your current billing period, but you will not receive a refund for the current billing period.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>4. Content</h2>
+                    <p>Our Service allows you to post, link, store, share, and otherwise make available certain information, text, graphics, videos, or other material ("Content"). You are responsible for the Content that you post on or through the Service, including its legality, reliability, and appropriateness.</p>
+                    <p>By posting Content on or through the Service, you represent and warrant that: (i) the Content is yours (you own it) or you have the right to use it and grant us the rights and license as provided in these Terms, and (ii) the posting of your Content on or through the Service does not violate the privacy rights, publicity rights, copyrights, contract rights, or any other rights of any person.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>5. Intellectual Property</h2>
+                    <p>The Service and its original content (excluding Content provided by users), features, and functionality are and will remain the exclusive property of GRIND OS and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries.</p>
+                    <p>Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of GRIND OS.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>6. Termination</h2>
+                    <p>We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.</p>
+                    <p>Upon termination, your right to use the Service will immediately cease. If you wish to terminate your account, you may simply discontinue using the Service or delete your account through the account settings.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>7. Limitation of Liability</h2>
+                    <p>In no event shall GRIND OS, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use, or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence), or any other legal theory, whether or not we have been informed of the possibility of such damage.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>8. Changes</h2>
+                    <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+                    <p>By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>9. Contact Us</h2>
+                    <p>If you have any questions about these Terms, please contact us at <a href="mailto:legal@grindos.com" style="color: var(--primary);">legal@grindos.com</a>.</p>
+                </div>
+
+                <div class="legal-meta">
+                    <p>Last updated: June 1, 2023</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">GRIND OS</div>
+                    <div class="footer-description">Your personal operating system for peak performance.</div>
+                </div>
+                <div class="footer-links">
+                    <h3>Product</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/landing#features">Features</a></li>
+                        <li><a href="/landing#pricing">Pricing</a></li>
+                        <li><a href="/landing#how-to-use">How to Use</a></li>
+                        <li><a href="/landing#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/careers">Careers</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul class="footer-link-list">
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 GRIND OS. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-slide-up');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Initialize elements with opacity 0 and translateY
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.animate-slide-up');
+            
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+            
+            // Trigger initial animation
+            setTimeout(animateOnScroll, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRIND OS - Standalone Version</title>
+    <link rel="icon" type="image/png" href="public/logo.png">
+    <style>
+        /* Base styles */
+        :root {
+            --primary: #9b87f5;
+            --primary-hover: #8a76e4;
+            --background: #f8f9fc;
+            --foreground: #1a1f2c;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --muted: #f1f5f9;
+            --muted-foreground: #64748b;
+            --radius: 0.5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Layout */
+        .app {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            height: 60px;
+            border-bottom: 1px solid var(--border);
+            background-color: var(--card);
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--card);
+            border-right: 1px solid var(--border);
+            padding: 1rem;
+            height: calc(100vh - 60px);
+            position: sticky;
+            top: 60px;
+            overflow-y: auto;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 1.5rem;
+        }
+
+        /* Components */
+        .card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+        }
+
+        .card-header {
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-description {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .button-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .button-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius);
+            color: var(--foreground);
+            text-decoration: none;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background-color: var(--muted);
+        }
+
+        .nav-item.active {
+            background-color: rgba(155, 135, 245, 0.1);
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            margin-right: 0.75rem;
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .task-list {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background-color: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .task-checkbox {
+            margin-right: 0.75rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .task-checkbox.checked {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .task-content {
+            flex: 1;
+        }
+
+        .task-title {
+            font-weight: 500;
+        }
+
+        .task-description {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 1rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .premium-banner {
+            background: linear-gradient(to right, rgba(155, 135, 245, 0.1), rgba(30, 174, 219, 0.1));
+            border: 1px solid rgba(155, 135, 245, 0.2);
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .premium-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .premium-icon {
+            color: var(--primary);
+        }
+
+        .premium-text h3 {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .premium-text p {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="logo-container">
+                <img src="public/logo.png" alt="GRIND OS Logo" class="logo">
+                <span class="logo-text">GRIND OS</span>
+            </div>
+            <button class="button button-primary">Upgrade to Premium</button>
+        </header>
+
+        <div class="main-container">
+            <aside class="sidebar">
+                <nav>
+                    <a href="#" class="nav-item active">
+                        <span class="nav-icon">📊</span>
+                        Dashboard
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">✓</span>
+                        Tasks
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">🔄</span>
+                        Rituals
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">🧭</span>
+                        Vision
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">📓</span>
+                        Journal
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        Notes
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">🤖</span>
+                        AI Assistant
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        Settings
+                    </a>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+                <div class="premium-banner">
+                    <div class="premium-content">
+                        <span class="premium-icon">💎</span>
+                        <div class="premium-text">
+                            <h3>Upgrade to Premium</h3>
+                            <p>Get access to all premium features for just $2.99/month</p>
+                        </div>
+                    </div>
+                    <button class="button button-primary">Upgrade Now</button>
+                </div>
+
+                <h1 class="section-title">Good Morning, John</h1>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">Tasks Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">7</div>
+                        <div class="stat-label">Day Streak</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Productivity</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Today's Focus</h2>
+                        <p class="card-description">Your top priorities for today</p>
+                    </div>
+                    <div class="task-list">
+                        <div class="task-item">
+                            <div class="task-checkbox"></div>
+                            <div class="task-content">
+                                <div class="task-title">Complete project proposal</div>
+                                <div class="task-description">Due today at 5:00 PM</div>
+                            </div>
+                        </div>
+                        <div class="task-item">
+                            <div class="task-checkbox"></div>
+                            <div class="task-content">
+                                <div class="task-title">Review quarterly goals</div>
+                                <div class="task-description">High priority</div>
+                            </div>
+                        </div>
+                        <div class="task-item">
+                            <div class="task-checkbox checked">✓</div>
+                            <div class="task-content">
+                                <div class="task-title">Morning meditation</div>
+                                <div class="task-description">Completed at 7:30 AM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Simple interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Task checkbox toggle
+            const checkboxes = document.querySelectorAll('.task-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                    if (this.classList.contains('checked')) {
+                        this.innerHTML = '✓';
+                    } else {
+                        this.innerHTML = '';
+                    }
+                });
+            });
+
+            // Navigation highlighting
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
