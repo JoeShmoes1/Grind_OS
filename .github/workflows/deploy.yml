@@ -34,8 +34,7 @@ jobs:
 
       - name: Copy static files
         run: |
-          cp public/*.html dist/ || true
-          cp public/*.png dist/ || true
+          node -e "const fs=require('fs'); const path=require('path'); ['landing.html','about.html','careers.html','blog.html','contact.html','terms.html','privacy.html','cookies.html','404.html','logo.png'].forEach(f=>{try{fs.copyFileSync(path.join('public',f),path.join('dist',f)); console.log('Copied',f)}catch(e){console.log('Skip',f)}})"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
