@@ -115,9 +115,14 @@
             color: var(--primary);
         }
 
-        .logo img {
-            height: 40px;
+        .logo .spinning-gear {
             margin-right: 0.75rem;
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .nav-links {
@@ -340,18 +345,24 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="/logo.png" alt="GRIND OS Logo">
+                    <div class="spinning-gear">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9b87f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"></path>
+                        </svg>
+                    </div>
                     <span>GRIND OS</span>
                 </div>
-                <nav class="nav-links">
-                    <a href="/landing#features" class="nav-link">Features</a>
-                    <a href="/landing#pricing" class="nav-link">Pricing</a>
-                    <a href="/landing#how-to-use" class="nav-link">How to Use</a>
-                    <a href="/landing#faq" class="nav-link">FAQ</a>
+                                <nav class="nav-links">
+                    <a href="./landing.html" class="nav-link">Home</a>
+                    <a href="./about.html" class="nav-link">About</a>
+                    <a href="./careers.html" class="nav-link">Careers</a>
+                    <a href="./blog.html" class="nav-link">Blog</a>
+                    <a href="./contact.html" class="nav-link">Contact</a>
                 </nav>
                 <div class="header-actions">
-                    <a href="/auth" class="btn btn-outline">Login</a>
-                    <a href="/auth?signup=true" class="btn btn-primary">Sign Up Free</a>
+                    <a href="./index.html#/auth" class="btn btn-outline">Login</a>
+                    <a href="./index.html#/auth?signup=true" class="btn btn-primary">Sign Up Free</a>
                 </div>
             </div>
         </div>
@@ -443,27 +454,27 @@
                 <div class="footer-links">
                     <h3>Product</h3>
                     <ul class="footer-link-list">
-                        <li><a href="/landing#features">Features</a></li>
-                        <li><a href="/landing#pricing">Pricing</a></li>
-                        <li><a href="/landing#how-to-use">How to Use</a></li>
-                        <li><a href="/landing#faq">FAQ</a></li>
+                        <li><a href="./landing.html#features">Features</a></li>
+                        <li><a href="./landing.html#pricing">Pricing</a></li>
+                        <li><a href="./landing.html#how-to-use">How to Use</a></li>
+                        <li><a href="./landing.html#faq">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h3>Company</h3>
                     <ul class="footer-link-list">
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/careers">Careers</a></li>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./careers.html">Careers</a></li>
+                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h3>Legal</h3>
                     <ul class="footer-link-list">
-                        <li><a href="/terms">Terms of Service</a></li>
-                        <li><a href="/privacy">Privacy Policy</a></li>
-                        <li><a href="/cookies">Cookie Policy</a></li>
+                        <li><a href="./terms.html">Terms of Service</a></li>
+                        <li><a href="./privacy.html">Privacy Policy</a></li>
+                        <li><a href="./cookies.html">Cookie Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -477,11 +488,11 @@
         // Animation on scroll
         const animateOnScroll = () => {
             const elements = document.querySelectorAll('.animate-slide-up');
-            
+
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
                 const windowHeight = window.innerHeight;
-                
+
                 if (elementPosition < windowHeight - 100) {
                     element.style.opacity = '1';
                     element.style.transform = 'translateY(0)';
@@ -496,13 +507,13 @@
         // Initialize elements with opacity 0 and translateY
         document.addEventListener('DOMContentLoaded', () => {
             const elements = document.querySelectorAll('.animate-slide-up');
-            
+
             elements.forEach(element => {
                 element.style.opacity = '0';
                 element.style.transform = 'translateY(20px)';
                 element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             });
-            
+
             // Trigger initial animation
             setTimeout(animateOnScroll, 100);
         });
