@@ -12,12 +12,23 @@ export default defineConfig(({ mode }) => ({
     strictPort: false, // Allow Vite to find another port if 3000 is in use
     open: true, // Automatically open browser on start
   },
-  // Set the default page to index.html
-  appType: 'spa',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        landing: 'public/landing.html',
+        about: 'public/about.html',
+        careers: 'public/careers.html',
+        blog: 'public/blog.html',
+        contact: 'public/contact.html',
+        terms: 'public/terms.html',
+        privacy: 'public/privacy.html',
+        cookies: 'public/cookies.html',
+      }
+    }
   },
   plugins: [
     react(),
@@ -27,8 +38,6 @@ export default defineConfig(({ mode }) => ({
         server.middlewares.use((req, res, next) => {
           // Map routes to HTML files
           const routes = {
-            '/': '/landing.html', // Make landing page the default
-            '/index': '/index.html',
             '/landing': '/landing.html',
             '/about': '/about.html',
             '/careers': '/careers.html',
