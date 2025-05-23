@@ -16,19 +16,6 @@ export default defineConfig(({ mode }) => ({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-    rollupOptions: {
-      input: {
-        main: 'index.html',
-        landing: 'public/landing.html',
-        about: 'public/about.html',
-        careers: 'public/careers.html',
-        blog: 'public/blog.html',
-        contact: 'public/contact.html',
-        terms: 'public/terms.html',
-        privacy: 'public/privacy.html',
-        cookies: 'public/cookies.html',
-      }
-    }
   },
   plugins: [
     react(),
